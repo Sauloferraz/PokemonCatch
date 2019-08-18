@@ -32,14 +32,14 @@ Orange::Orange(float pX, float pY, float ang)
 	Emitter emitter;
 	emitter.imgFile = "Resources/Star.png";		// arquivo de imagem
 	emitter.angle = speed.angle + 180;			// ângulo base do emissor
-	emitter.spread = 5;							// espalhamento em graus
+	emitter.spread = 10;							// espalhamento em graus
 	emitter.lifeTime = 0.4f;					// tempo de vida em segundos
 	emitter.genTime = 0.010f;					// tempo entre geração de novas partículas
 	emitter.percToDim = 0.8f;					// desaparece após 60% da vida
 	emitter.minSpeed = 100.0f;					// velocidade mínima das partículas
 	emitter.maxSpeed = 200.0f;					// velocidade máxima das partículas
-	emitter.r = 1.0f;							// componente Red da partícula 
-	emitter.g = 0.5;							// componente Green da partícula 
+	emitter.r = 1.58f;							// componente Red da partícula 
+	emitter.g = 0.38f;							// componente Green da partícula 
 	emitter.b = 0.0f;							// componente Blue da partícula 
 	emitter.a = 1.0f;							// transparência da partícula
 

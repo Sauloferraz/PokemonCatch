@@ -84,7 +84,7 @@ void Green::Update()
 
 	// move o objeto pelo seu vetor velocidade
 	Translate(speed.XCom() * 50.0f * gameTime, -speed.YCom() * 50.0f * gameTime);
-	Rotate(50 * gameTime);
+	//Rotate(50 * gameTime);
 
 	// mantém o objeto dentro do mundo do jogo
 	if (x < 50)

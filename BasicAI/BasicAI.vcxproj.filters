@@ -74,9 +74,6 @@
     <Filter Include="Game\Pokes\Waves\WaveSpearow">
       <UniqueIdentifier>{e474d7ab-46cc-4e36-a557-864068324ed4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game\Pokes\Spearow">
-      <UniqueIdentifier>{02a45cb8-82ce-4bc5-8ada-ea64ecc457db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Game\Pokes\Waves\WaveMuk">
       <UniqueIdentifier>{e14a50e6-81af-463d-b9e1-33cb32f099d7}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,12 @@
     </Filter>
     <Filter Include="Game\Pokes\Caterpie">
       <UniqueIdentifier>{3e02f26b-5744-4e51-b674-795eefb5969c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Hud\LifeBar">
+      <UniqueIdentifier>{8c8359c8-9ea0-466f-a0ac-4a5ea414f3c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Pokes\Tauros">
+      <UniqueIdentifier>{02a45cb8-82ce-4bc5-8ada-ea64ecc457db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,7 +182,7 @@
       <Filter>Game\Pokes\Nido</Filter>
     </ClCompile>
     <ClCompile Include="Orange.cpp">
-      <Filter>Game\Pokes\Spearow</Filter>
+      <Filter>Game\Pokes\Tauros</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Game\Player</Filter>
@@ -216,6 +219,9 @@
     </ClCompile>
     <ClCompile Include="Caterpie.cpp">
       <Filter>Game\Pokes\Caterpie</Filter>
+    </ClCompile>
+    <ClCompile Include="Life.cpp">
+      <Filter>Game\Hud\LifeBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,7 +319,7 @@
       <Filter>Game\Player\Ball</Filter>
     </ClInclude>
     <ClInclude Include="Orange.h">
-      <Filter>Game\Pokes\Spearow</Filter>
+      <Filter>Game\Pokes\Tauros</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Game\Player</Filter>
@@ -350,6 +356,9 @@
     </ClInclude>
     <ClInclude Include="Caterpie.h">
       <Filter>Game\Pokes\Caterpie</Filter>
+    </ClInclude>
+    <ClInclude Include="Life.h">
+      <Filter>Game\Hud\LifeBar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

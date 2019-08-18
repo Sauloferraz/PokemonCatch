@@ -25,15 +25,15 @@ Explosion::Explosion(float pX, float pY)
 	Emitter explosion;
 	explosion.imgFile   = "Resources/Explo.png";	// arquivo de imagem
 	explosion.angle     = 0.0f;						// direção da explosão
-	explosion.spread    = 180.0f;					// espalhamento em graus
-	explosion.lifeTime  = 1.5f;						// tempo de vida em segundos
+	explosion.spread    = -180.0f;					// espalhamento em graus
+	explosion.lifeTime  = 0.5f;						// tempo de vida em segundos
 	explosion.genTime   = 0.000f;					// tempo entre geração de novas partículas
 	explosion.percToDim = 0.8f;						// desaparece após 60% da vida
 	explosion.minSpeed  = 25.0f;					// velocidade mínima das partículas
-	explosion.maxSpeed  = 250.0f;					// velocidade máxima das partículas
-	explosion.r = color.Rand();						// cor da partícula entre 0 e 1
-	explosion.g = color.Rand();						// cor da partícula entre 0 e 1
-	explosion.b = color.Rand();						// cor da partícula entre 0 e 1
+	explosion.maxSpeed  = 70.0f;					// velocidade máxima das partículas
+	explosion.r = 1.0f;								// cor da partícula entre 0 e 1
+	explosion.g = 0.0f;								// cor da partícula entre 0 e 1
+	explosion.b = 0.0f;								// cor da partícula entre 0 e 1
 	explosion.a = 1.0f;								// transparência da partícula
 
 	// cria sistema de partículas

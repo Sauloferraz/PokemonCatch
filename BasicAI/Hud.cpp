@@ -11,6 +11,7 @@
 
 #include "Hud.h"
 #include "BasicAI.h"
+#include "Life.h"
 
 // ------------------------------------------------------------------------------
 
@@ -34,9 +35,10 @@ Hud::Hud()
 	font->Spacing("Resources/Tahoma14.dat");
 	bold = new Font("Resources/Tahoma14b.png");
 	bold->Spacing("Resources/Tahoma14b.dat");
-
 	// carrega sprites
 	infoBox = new Sprite("Resources/InfoBox.png");
+	
+	life = new Sprite("Resources/HPbar.png");
 
 	// inicializa contador de frames e tempo transcorrido
 	frameCount = 0;
@@ -77,7 +79,8 @@ void Hud::Update()
 void Hud::Draw()
 {
 	// desenha elementos da interface
-	infoBox->Draw(game->viewport.left + 140, game->viewport.top + 100, Layer::FRONT);
+	infoBox->Draw(game->viewport.left + 140, game->viewport.top + 100, Layer::MIDFRONT);
+	life->Draw(game->viewport.left + 50, game->viewport.top + 100, Layer::MIDFRONT);
 
 	// define cor do texto
 	Color textColor{ 0.7f, 0.7f, 0.7f, 1.0f };

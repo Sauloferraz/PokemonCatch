@@ -50,8 +50,7 @@ Missile::~Missile()
 	delete sprite;
 	delete bbox;
 
-	// decrementa contagem
-	--Hud::missiles;
+	//BasicAI::audio->Stop(HITWALL);
 }
 
 // -------------------------------------------------------------------------------

@@ -18,6 +18,7 @@
 #include "Sprite.h"
 #include "Font.h"
 #include <sstream>
+#include "Animation.h"
 using std::stringstream;
 
 // --------------------------------------------------------------------------------
@@ -31,7 +32,9 @@ private:
 	stringstream text;							// texto temporário
 	uint frameCount;							// contador de quadros por segundo
 	float totalTime;							// tempo total transcorrido 
-	uint fps;									// valor para exibição do fps
+	uint fps;		
+	// valor para exibição do fps
+	Sprite* life = nullptr;
 
 public:
 	static uint missiles;						// número de mísseis na tela

@@ -1,6 +1,6 @@
 /**********************************************************************************
 // Player (Código Fonte)
-// 
+//
 // Criação:		10 Out 2012
 // Atualização:	11 Ago 2019
 // Compilador:	Visual C++ 2019
@@ -23,7 +23,7 @@ Player::Player()
 	gamepadOn = gamepad->Initialize();
 
 	// configuração do objeto
-	sprite = new Sprite("Resources/Player2.png");
+	sprite = new Sprite("Resources/CharStopped.png");
 	bbox = new Circle(18.0f);
 	speed = { 90.0f, 0.0f };
 	MoveTo(game->CenterX(), game->CenterY());
@@ -31,11 +31,11 @@ Player::Player()
 
 	// configuração do emissor de partículas
 	Emitter emitter;
-	emitter.imgFile = "Resources/Star.png";		// arquivo de imagem
+	emitter.imgFile = "Resources/Poeira.png";	// arquivo de imagem
 	emitter.angle = 270.0f;						// ângulo base do emissor
-	emitter.spread = 25;						// espalhamento em graus
-	emitter.lifeTime = 0.3f;					// tempo de vida em segundos
-	emitter.genTime = 0.010f;					// tempo entre geração de novas partículas
+	emitter.spread = 40;						// espalhamento em graus
+	emitter.lifeTime = 0.25f;					// tempo de vida em segundos
+	emitter.genTime = 0.10f;					// tempo entre geração de novas partículas
 	emitter.percToDim = 0.6f;					// desaparece após 60% da vida
 	emitter.minSpeed = 50.0f;					// velocidade mínima das partículas
 	emitter.maxSpeed = 100.0f;					// velocidade máxima das partículas
@@ -47,6 +47,7 @@ Player::Player()
 	// cria sistema de partículas
 	tail = new Particles(emitter);
 	tailCount = 0;
+
 
 	// diparo habilitado
 	firingAngle = 0.0f;
@@ -65,6 +66,7 @@ Player::~Player()
 	delete bbox;
 	delete tail;
 	delete gamepad;
+	delete ra;
 }
 
 // -------------------------------------------------------------------------------
@@ -122,7 +124,7 @@ bool Player::AxisTimed(int axisX, int axisY, float time)
 
 // -------------------------------------------------------------------------------
 
-void Player::Move(Vector && v)
+void Player::Move(Vector&& v)
 {
 	// soma vetor movimento (v) ao vetor velocidade
 	speed.Add(v);
@@ -137,7 +139,7 @@ void Player::Move(Vector && v)
 void Player::Update()
 {
 	// magnitude do vetor aceleração
-	float accel = 40.0f * gameTime;
+	float accel = 60.0f * gameTime;
 
 	// -----------------
 	// Controle
@@ -163,7 +165,7 @@ void Player::Update()
 			else
 			{
 				// some um vetor no sentido contrário para frear
-				Move(Vector(speed.angle + 180.0f, 5.0f * gameTime));
+				speed.magnitude = 0.0f;
 			}
 		}
 		else
@@ -174,12 +176,12 @@ void Player::Update()
 
 		// dispara míssil com o analógico direito
 
-			if (AxisTimed(AxisRX, AxisRY, 0.300f))
-			{
-					float ang = Vector::Angle(0, 0, float(gamepad->Axis(AxisRX)), float(gamepad->Axis(AxisRY)));
-					BasicAI::audio->Play(FIRE);
-					BasicAI::scene->Add(new Missile(ang), STATIC);
-			}
+		if (AxisTimed(AxisRX, AxisRY, 0.400f))
+		{
+			float ang = Vector::Angle(0, 0, float(gamepad->Axis(AxisRX)), float(gamepad->Axis(AxisRY)));
+			BasicAI::audio->Play(FIRE);
+			BasicAI::scene->Add(new Missile(ang), STATIC);
+		}
 	}
 	// -----------------
 	// Teclado
@@ -215,7 +217,7 @@ void Player::Update()
 		if (window->KeyDown(VK_RIGHT) && window->KeyDown(VK_UP)) {
 			keysPressed = true;
 			firingAngle = 45.0f;
-		} 
+		}
 		else if (window->KeyDown(VK_LEFT) && window->KeyDown(VK_UP)) {
 			keysPressed = true;
 			firingAngle = 135.0f;
@@ -264,7 +266,7 @@ void Player::Update()
 	tail->Generator().angle = speed.angle + 180;
 	tail->Generate(x - 10 * cos(speed.Radians()), y + 10 * sin(speed.Radians()));
 	tail->Update(gameTime);
-	
+
 	Hud::particles -= tailCount;
 	tailCount = tail->Size();
 	Hud::particles += tailCount;
@@ -285,7 +287,11 @@ void Player::Update()
 void Player::Draw()
 {
 	sprite->Draw(x, y, Layer::MIDDLE, 1.0f, -speed.angle + 90.0f);
-	tail->Draw(Layer::MIDBACK, 1.0f);
+	if (speed.magnitude > 0) {
+		tail->Draw(Layer::MIDBACK, 1.0f);
+		ra->Draw(x, y, Layer::MIDDLE, 1.0f, -speed.angle + 90.0f);
+		ra->NextFrame();
+	}
 }
 
 

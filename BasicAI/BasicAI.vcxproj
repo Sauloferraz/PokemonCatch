@@ -170,6 +170,7 @@
     <ClCompile Include="Muk.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Orange.cpp" />
+    <ClCompile Include="Life.cpp" />
     <ClCompile Include="Particles.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Blue.h" />
+    <ClInclude Include="Life.h" />
     <ClInclude Include="Caterpie.h" />
     <ClInclude Include="WaveSnorlax.h" />
     <ClInclude Include="Muk.h" />

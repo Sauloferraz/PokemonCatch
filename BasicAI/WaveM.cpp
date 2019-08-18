@@ -17,7 +17,7 @@
 
 // ------------------------------------------------------------------------------
 
-WaveM::WaveM() : posX(50, window->Width()-50), posY(50,game->Height()-50), secs(2.0f, 4.0f)
+WaveM::WaveM() : posX(50, window->Width()-50), posY(50,game->Height()-50), secs(8.0f, 10.0f)
 {
 	// posição dos inimigos
 	pX = posX.Rand();

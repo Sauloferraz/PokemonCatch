@@ -46,17 +46,17 @@ WallHit::WallHit(float pX, float pY)
 	
 	// configura emissor de partículas
 	Emitter explosion;
-	explosion.imgFile   = "Resources/Star.png";		// arquivo de imagem
+	explosion.imgFile   = "Resources/Explo.png";		// arquivo de imagem
 	explosion.angle     = base;						// direção da explosão
 	explosion.spread    = 80.0f;					// espalhamento em graus
-	explosion.lifeTime  = 1.0f;						// tempo de vida em segundos
+	explosion.lifeTime  = 0.6f;						// tempo de vida em segundos
 	explosion.genTime   = 0.000f;					// tempo entre geração de novas partículas
 	explosion.percToDim = 0.6f;						// desaparece após 60% da vida
 	explosion.minSpeed  = 25.0f;					// velocidade mínima das partículas
-	explosion.maxSpeed  = 250.0f;					// velocidade máxima das partículas
-	explosion.r = color.Rand();						// cor da partícula entre 0 e 1
-	explosion.g = color.Rand();						// cor da partícula entre 0 e 1
-	explosion.b = color.Rand();						// cor da partícula entre 0 e 1
+	explosion.maxSpeed  = 100.0f;					// velocidade máxima das partículas
+	explosion.r = 1.0f;						// cor da partícula entre 0 e 1
+	explosion.g = 1.0f;						// cor da partícula entre 0 e 1
+	explosion.b = 1.0f;						// cor da partícula entre 0 e 1
 	explosion.a = 1.0f;								// transparência da partícula
 
 	// cria sistema de partículas

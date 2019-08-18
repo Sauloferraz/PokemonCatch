@@ -1,6 +1,6 @@
 /**********************************************************************************
 // Player (Arquivo de Cabeçalho)
-// 
+//
 // Criação:		10 Out 2012
 // Atualização:	11 Ago 2019
 // Compilador:	Visual C++ 2019
@@ -20,19 +20,21 @@
 #include "Particles.h"					// sistema de partículas
 #include "Controller.h"					// entrada pelo controle
 #include "Timer.h"						// controle do tempo
-
+#include "Animation.h"
 // ---------------------------------------------------------------------------------
 
 class Player : public Object
 {
 private:
-	Sprite * sprite;					// sprite do objeto
-	Particles * tail;					// calda do jogador
+	Sprite* sprite;					// sprite do objeto
+	TileSet* r = new TileSet("Resources/CharTile.png", 1, 5);
+	Animation* ra = new Animation(r, 2.0f / 22.0f, true);
+	Particles* tail;					// calda do jogador
 	uint tailCount;						// quantidade de partículas da calda
-	
-	Controller * gamepad;				// leitura do controle
+
+	Controller* gamepad;				// leitura do controle
 	bool gamepadOn;						// controle está ligado
-	
+
 	Timer timer;						// controla tempo dos disparos
 	llong start;						// marcação de início do disparo
 	bool axisCtrl;						// habilita leitura de disparos
@@ -45,14 +47,14 @@ public:
 
 	Player();							// construtor
 	~Player();							// destrutor
-	
+
 	bool AxisTimed(int axisX, int axisY, float time);
 	bool KeysTimed(bool pressed, float time);
 
-	void Move(Vector && v);				// movimenta jogador
+	void Move(Vector&& v);				// movimenta jogador
 	void Update();						// atualização
 	void Draw();						// desenho
-}; 
+};
 // ---------------------------------------------------------------------------------
 
 #endif

@@ -82,7 +82,7 @@ void Hud::Draw()
 {
 	// desenha elementos da interface
 	infoBox->Draw(game->viewport.left + 140, game->viewport.top + 100, Layer::MIDFRONT);
-	life->Draw(game->viewport.left + 50, game->viewport.top + 100, Layer::MIDFRONT);
+	//life->Draw(game->viewport.left + 50, game->viewport.top + 100, Layer::MIDFRONT);
 
 	// define cor do texto
 	Color textColor{ 0.7f, 0.7f, 0.7f, 1.0f };

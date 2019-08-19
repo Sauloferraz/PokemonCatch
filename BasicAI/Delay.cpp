@@ -52,7 +52,7 @@ void Delay::Update()
 	if (notPlayed && timer.Elapsed(2.0f))
 	{
 		// toca áudio de introdução
-		BasicAI::audio->Play(START);
+		// BasicAI::audio->Play(START);
 		notPlayed = false;
 	}
 

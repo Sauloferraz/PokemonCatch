@@ -20,7 +20,14 @@ Green::Green(float pX, float pY, Player * p)
 {
 	player = p;
 	sprite = new Sprite("Resources/pika.png");
-	bbox   = new Circle(20.0f);
+	Point pika[11] =
+	{
+		Point(0,19),Point(14, 13),Point(14.6, 3),Point(13.6, -6),
+		Point(19, -18.5),Point(6.8, -12),Point(-6.6, -12),Point(-19, -18),
+		Point(-13, -6.3),Point(-14.6, 3),Point(-16, 10)
+	};
+
+	bbox = new Poly(pika, 11);
 	name = new Font("Resources/Tahoma14b.png");
 	name->Spacing("Resources/Tahoma14b.dat");
 	speed.angle = 0.0f;

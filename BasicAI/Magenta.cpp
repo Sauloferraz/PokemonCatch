@@ -23,7 +23,16 @@ Magenta::Magenta(float pX, float pY, Player * p)
 	sprite = new Sprite("Resources/nido.png");
 	name = new Font("Resources/Tahoma14b.png");
 	name->Spacing("Resources/Tahoma14b.dat");
-	bbox   = new Circle(18.0f);
+	Point nido[25] =
+	{
+		Point(-29,-38), Point(-31,-33), Point(-41,-31), Point(-37,-19), Point(-34, -6),
+		Point(-41, -3), Point(-40, 5), Point(-34, 8), Point(-32, 13), Point(-29, 23),
+		Point(-12, 36), Point(8, 34), Point(20,28), Point(29, 10), Point(40,0),
+		Point(29, -2), Point(28, -8), Point(27, -24), Point(30, -32), Point(25, -31),
+		Point(24, -37), Point(11, -34), Point(5, -26), Point(-4, -36), Point(-10, -32)
+	};
+
+	bbox = new Poly(nido, 25);
 	
 	speed.angle = 0;
 	speed.magnitude = 2.0f;

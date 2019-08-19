@@ -11,6 +11,7 @@
 #include "Tree.h"
 #include "Engine.h"
 #include "GameOver.h"
+#include "Life.h"
 
 // ------------------------------------------------------------------------------
 Player* BasicAI::player = nullptr;
@@ -24,7 +25,7 @@ void BasicAI::Init() {
 
 	// cria sistema de áudio
 	audio = new Audio();
-	audio->Add(START, "Resources/Start.wav");
+	//audio->Add(START, "Resources/Start.wav");
 	audio->Add(THEME, "Resources/Theme.wav");
 	audio->Add(FIRE, "Resources/Fire.wav", 2);
 	audio->Add(HITWALL, "Resources/Hitwall.wav", 5);
@@ -35,7 +36,7 @@ void BasicAI::Init() {
 	audio->Add(GREEN, "Resources/Green.wav", 2);
 
 	// ajusta volumes
-	audio->Volume(START, 0.80f);
+	//audio->Volume(START, 0.80f);
 	audio->Volume(FIRE, 0.20f);
 	audio->Volume(EXPLODE, 0.25f);
 	audio->Volume(ORANGE, 0.90f);
@@ -65,9 +66,10 @@ void BasicAI::Init() {
 	// adiciona objetos na cena
 	scene->Add(player, MOVING);
 	scene->Add(new Delay(), STATIC);
-	scene->Add(new Tree(500, 500), STATIC);
-	scene->Add(new Tree(3000, 250), STATIC);
+	scene->Add(new Tree(250, 500), STATIC);
+	scene->Add(new Tree(1200, 250), STATIC);
 	scene->Add(new Tree(1500, 850), STATIC);
+	scene->Add(new Life(), STATIC);
 }
 
 // ------------------------------------------------------------------------------

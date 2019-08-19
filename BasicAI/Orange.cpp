@@ -19,7 +19,13 @@
 Orange::Orange(float pX, float pY, float ang)
 {
 	sprite = new Sprite("Resources/char.png");
-	bbox   = new Circle(20.0f);
+	Point taurus[14] =
+	{
+		Point(21,-16),Point(20,-4),Point(14,13),Point(4,21),Point(0,24),
+		Point(-5,21),Point(-18,9),Point(-19,-3),Point(-25,-15),Point(-16,-11),
+		Point(-5,-24),Point(0,-24),Point(7,-19),Point(16,-10)
+	};
+	bbox = new Poly(taurus, 14);
 
 	name = new Font("Resources/Tahoma14b.png");
 	name->Spacing("Resources/Tahoma14b.dat");

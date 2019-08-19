@@ -21,7 +21,14 @@ Blue::Blue(float pX, float pY, Player* p)
 {
 	player = p;
 	sprite = new Sprite("Resources/Bulba.png");
-	bbox   = new Circle(20.0f);
+	Point bulba[12] =
+	{
+		Point(-2,-28.3), Point(-16,-17.4),Point(-27, -17.4),Point(-27, 1.28),
+		Point(-28, 14.8),Point(-18, 25.5), Point(2.5, 28),Point(18,21.9),
+		Point(23.4, 11),Point(28.9, 1),Point(18.3, -17),Point(6, -29)
+	};
+
+	bbox = new Poly(bulba, 12);
 	name = new Font("Resources/Tahoma14b.png");
 	name->Spacing("Resources/Tahoma14b.dat");
 	speed.angle = 0.0f;

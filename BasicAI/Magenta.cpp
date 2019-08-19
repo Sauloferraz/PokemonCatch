@@ -21,6 +21,8 @@ Magenta::Magenta(float pX, float pY, Player * p)
 {
 	player = p;
 	sprite = new Sprite("Resources/nido.png");
+	name = new Font("Resources/Tahoma14b.png");
+	name->Spacing("Resources/Tahoma14b.dat");
 	bbox   = new Circle(18.0f);
 	
 	speed.angle = 0;

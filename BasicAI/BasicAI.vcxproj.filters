@@ -101,6 +101,18 @@
     <Filter Include="Game\Pokes\Waves\WaveHitmonlee">
       <UniqueIdentifier>{65ae074d-db12-41ec-9b35-ffc2c1d64bee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Tree">
+      <UniqueIdentifier>{a5b6527d-f209-40f6-a04c-f63801bb1cf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Intro">
+      <UniqueIdentifier>{2e594b79-430e-4239-9dd1-f5538b3539bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\MainGame">
+      <UniqueIdentifier>{fd902097-ce61-4265-b58e-c46ff8a1312e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameOver">
+      <UniqueIdentifier>{d3a46032-45c3-4a97-9992-95cb54cd93f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -240,6 +252,18 @@
     </ClCompile>
     <ClCompile Include="WaveHit.cpp">
       <Filter>Game\Pokes\Waves\WaveHitmonlee</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>Game\Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Intro.cpp">
+      <Filter>Game\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>Game\MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Game\GameOver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -386,6 +410,15 @@
     </ClInclude>
     <ClInclude Include="WaveHit.h">
       <Filter>Game\Pokes\Waves\WaveHitmonlee</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>Game\Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Intro.h">
+      <Filter>Game\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Game\GameOver</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

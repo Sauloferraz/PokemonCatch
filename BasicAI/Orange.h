@@ -19,6 +19,7 @@
 #include "Sprite.h"
 #include "Vector.h"
 #include "Player.h"
+#include "Font.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ class Orange : public Object
 private:
 	Sprite * sprite;						// sprite da nave
 	Particles * tail;						// calda da nave
+	Font* name;
 	uint tailCount;							// quantidade de partículas da calda
 	Vector speed;							// velocidade e direção	
 	

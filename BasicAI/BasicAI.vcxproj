@@ -159,6 +159,7 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="BasicAI.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -166,7 +167,9 @@
     <ClCompile Include="Hitmonlee.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Intro.cpp" />
     <ClCompile Include="Magenta.cpp" />
+    <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Muk.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -183,6 +186,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="WaveHit.cpp" />
     <ClCompile Include="WaveMuk.cpp" />
@@ -200,9 +204,12 @@
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Blue.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="Hitmonlee.h" />
+    <ClInclude Include="Intro.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Caterpie.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="WaveHit.h" />
     <ClInclude Include="WaveSnorlax.h" />
     <ClInclude Include="Muk.h" />

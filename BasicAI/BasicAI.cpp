@@ -1,30 +1,27 @@
 /**********************************************************************************
-// BasicAI (Código Fonte)
-// 
-// Criação:		23 Out 2012
-// Atualização:	11 Ago 2019
+// BasicAI (Código Fonte)ddddd
 // Compilador:	Visual C++ 2019
 //
 // Descrição:	Demonstração de scrolling e IA
 //
 **********************************************************************************/
 
-#include "Resources.h"
 #include "BasicAI.h"
-#include "Engine.h"	
 #include "Delay.h"
+#include "Tree.h"
+#include "Engine.h"
+#include "GameOver.h"
 
 // ------------------------------------------------------------------------------
-
-Player * BasicAI::player = nullptr;
-Audio  * BasicAI::audio = nullptr;
-Scene  * BasicAI::scene = nullptr;
+Player* BasicAI::player = nullptr;
+Audio* BasicAI::audio = nullptr;
+Scene* BasicAI::scene = nullptr;
 bool     BasicAI::viewHUD = false;
-
 // ------------------------------------------------------------------------------
 
-void BasicAI::Init() 
-{
+void BasicAI::Init() {
+	game->Size(1600, 900);
+
 	// cria sistema de áudio
 	audio = new Audio();
 	audio->Add(START, "Resources/Start.wav");
@@ -41,24 +38,25 @@ void BasicAI::Init()
 	audio->Volume(START, 0.80f);
 	audio->Volume(FIRE, 0.20f);
 	audio->Volume(EXPLODE, 0.25f);
-	audio->Volume(ORANGE, 0.90f);	
+	audio->Volume(ORANGE, 0.90f);
 	audio->Volume(MAGENTA, 0.50f);
 	audio->Volume(BLUE, 0.20f);
 	audio->Volume(GREEN, 0.75f);
 
 	// carrega/incializa objetos
-	backg   = new Background("Resources/Space.png");
-	player  = new Player();
-	scene   = new Scene();	
+	backg = new Background("Resources/Space.png");
+	sprite = new Sprite("Resources/space4k.png");
+	player = new Player();
+	scene = new Scene();
 
 	// calcula posição para manter viewport centralizada
-	float difx = (game->Width() - window->Width())/2.0f;
-	float dify = (game->Height() - window->Height())/2.0f;
+	float difx = (game->Width() - window->Width()) / 2.0f;
+	float dify = (game->Height() - window->Height()) / 2.0f;
 
 	// inicializa viewport para o centro do background
-	viewport.left   = 0.0f + difx;
-	viewport.right  = viewport.left + window->Width();
-	viewport.top    = 0.0f + dify;
+	viewport.left = 0.0f + difx;
+	viewport.right = viewport.left + window->Width();
+	viewport.top = 0.0f + dify;
 	viewport.bottom = viewport.top + window->Height();
 
 	// cria o Heads Up Display
@@ -67,18 +65,16 @@ void BasicAI::Init()
 	// adiciona objetos na cena
 	scene->Add(player, MOVING);
 	scene->Add(new Delay(), STATIC);
+	scene->Add(new Tree(500, 500), STATIC);
+	scene->Add(new Tree(3000, 250), STATIC);
+	scene->Add(new Tree(1500, 850), STATIC);
 }
 
 // ------------------------------------------------------------------------------
 
-void BasicAI::Update()
-{
+void BasicAI::Update() {
 	// sai com o pressionamento da tecla ESC
 	window->CloseOnEscape();
-
-	// atualiza cena e calcula colisões
-	scene->Update();
-	scene->CollisionDetection();
 
 	// atualiza o heads up display
 	hud->Update();
@@ -86,29 +82,23 @@ void BasicAI::Update()
 	// ---------------------------------------------------
 	// atualiza a viewport
 	// ---------------------------------------------------
-	viewport.left   = player->X() - window->CenterX();
-	viewport.right  = player->X() + window->CenterX();
-	viewport.top    = player->Y() - window->CenterY();
+	viewport.left = player->X() - window->CenterX();
+	viewport.right = player->X() + window->CenterX();
+	viewport.top = player->Y() - window->CenterY();
 	viewport.bottom = player->Y() + window->CenterY();
-			
-	if (viewport.left < 0)
-	{
-		viewport.left  = 0;
+
+	if (viewport.left < 0) {
+		viewport.left = 0;
 		viewport.right = float(window->Width());
+	} else if (viewport.right > game->Width()) {
+		viewport.left = float(game->Width() - window->Width());
+		viewport.right = float(game->Width());
 	}
-	else if (viewport.right > game->Width())
-	{  
-		viewport.left  = float (game->Width() - window->Width());
- 		viewport.right = float(game->Width());
-	}
-  		        
-  	if (viewport.top < 0)
-	{
-		viewport.top  = 0;
+
+	if (viewport.top < 0) {
+		viewport.top = 0;
 		viewport.bottom = float(window->Height());
-	}
-	else if (viewport.bottom > game->Height())
-	{
+	} else if (viewport.bottom > game->Height()) {
 		viewport.top = float(game->Height() - window->Height());
 		viewport.bottom = float(game->Height());
 	}
@@ -121,14 +111,23 @@ void BasicAI::Update()
 	// ativa ou desativa o heads up display
 	if (window->KeyCtrl('H'))
 		viewHUD = !viewHUD;
-} 
+
+	// atualiza cena e calcula colisões
+	if (player->isDead()) {
+		Engine::Next<GameOver>();
+	} else {
+		scene->Update();
+		scene->CollisionDetection();
+	}
+	
+}
 
 // ------------------------------------------------------------------------------
 
-void BasicAI::Draw()
-{
+void BasicAI::Draw() {
 	// desenha pano de fundo
-	backg->Draw(viewport);
+	//backg->Draw(viewport);
+	sprite->Draw((game->Width())/2, (game->Height())/2, 0.98);
 
 	// desenha heads up display
 	if (viewHUD)
@@ -144,50 +143,9 @@ void BasicAI::Draw()
 
 // ------------------------------------------------------------------------------
 
-void BasicAI::Finalize()
-{
+void BasicAI::Finalize() {
 	delete audio;
 	delete hud;
 	delete scene;
 	delete backg;
 }
-
-
-// ------------------------------------------------------------------------------
-//                                  WinMain                                      
-// ------------------------------------------------------------------------------
-
-int APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
-{
-	// cria motor do jogo
-	Engine * engine = new Engine();
-
-	// configura janela
-	//engine->window->Mode(WINDOWED);
-	//engine->window->Size(1152, 648);
-	engine->window->Color(0, 0, 0);
-	engine->window->Title("Catch'em All!");
-	engine->window->Icon(IDI_ICON);
-	engine->window->Cursor(IDC_CURSOR);
-	engine->window->HideCursor(true);
-
-	// configura dispositivo gráfico
-	engine->graphics->VSync(true);
-
-	// cria o jogo
-	Game * game = new BasicAI();
-
-	// configura o jogo
-	game->Size(3840, 2160);
-	
-	// inicia execução
-	int status = engine->Start(game);
-
-	// destrói motor 
-	delete engine;
-
-	// encerra programa
-	return status;
-}
-
-// ----------------------------------------------------------------------------

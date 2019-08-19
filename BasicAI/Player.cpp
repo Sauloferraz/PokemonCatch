@@ -24,6 +24,7 @@ Player::Player()
 
 	// configuração do objeto
 	sprite = new Sprite("Resources/CharStopped.png");
+	aim = new Sprite("Resources/mira.png");
 	bbox = new Circle(18.0f);
 	speed = { 90.0f, 0.0f };
 	MoveTo(game->CenterX(), game->CenterY());
@@ -48,6 +49,9 @@ Player::Player()
 	tail = new Particles(emitter);
 	tailCount = 0;
 
+	// Vida
+	life = 100;
+	dead = false;
 
 	// diparo habilitado
 	firingAngle = 0.0f;
@@ -138,14 +142,17 @@ void Player::Move(Vector&& v)
 
 void Player::Update()
 {
+	if (life < 0) {
+		dead = true;
+	}
+
 	// magnitude do vetor aceleração
 	float accel = 60.0f * gameTime;
 
 	// -----------------
 	// Controle
 	// -----------------
-	if (gamepadOn)
-	{
+	if (gamepadOn) {
 		// atualiza estado das teclas e eixos do controle
 		gamepad->UpdateState();
 
@@ -154,30 +161,23 @@ void Player::Update()
 		float mag = Vector::Distance(0, 0, gamepad->Axis(AxisX) / 250.0f, gamepad->Axis(AxisY) / 250.0f);
 
 		// nenhuma direção selecionada
-		if (mag == 0)
-		{
+		if (mag == 0) {
 			// se a velocidade estiver muita baixa
-			if (speed.magnitude < 0.1)
-			{
+			if (speed.magnitude < 0.1) {
 				// pare de se movimentar imediatamente
 				speed.magnitude = 0.0f;
-			}
-			else
-			{
+			} else {
 				// some um vetor no sentido contrário para frear
 				speed.magnitude = 0.0f;
 			}
-		}
-		else
-		{
+		} else {
 			// movimente-se para a nova direção
 			Move(Vector(ang, mag * gameTime));
 		}
 
 		// dispara míssil com o analógico direito
 
-		if (AxisTimed(AxisRX, AxisRY, 0.400f))
-		{
+		if (AxisTimed(AxisRX, AxisRY, 0.400f)) {
 			float ang = Vector::Angle(0, 0, float(gamepad->Axis(AxisRX)), float(gamepad->Axis(AxisRY)));
 			BasicAI::audio->Play(FIRE);
 			BasicAI::scene->Add(new Missile(ang), STATIC);
@@ -186,8 +186,7 @@ void Player::Update()
 	// -----------------
 	// Teclado
 	// -----------------
-	else
-	{
+	else {
 		// controla movimentação do jogador
 		if (window->KeyDown('D') && window->KeyDown('W'))
 			Move(Vector(45.0f, accel));
@@ -214,48 +213,17 @@ void Player::Update()
 				speed.magnitude = 0.0f;
 
 		// controla direção dos disparos
-		if (window->KeyDown(VK_RIGHT) && window->KeyDown(VK_UP)) {
+		if (window->KeyDown(VK_LBUTTON)) {
 			keysPressed = true;
-			firingAngle = 45.0f;
-		}
-		else if (window->KeyDown(VK_LEFT) && window->KeyDown(VK_UP)) {
-			keysPressed = true;
-			firingAngle = 135.0f;
-		}
-		else if (window->KeyDown(VK_LEFT) && window->KeyDown(VK_DOWN)) {
-			keysPressed = true;
-			firingAngle = 225.0f;
-		}
-		else if (window->KeyDown(VK_RIGHT) && window->KeyDown(VK_DOWN)) {
-			keysPressed = true;
-			firingAngle = 315.0f;
-		}
-		else if (window->KeyDown(VK_RIGHT)) {
-			keysPressed = true;
-			firingAngle = 0.0f;
-		}
-		else if (window->KeyDown(VK_LEFT)) {
-			keysPressed = true;
-			firingAngle = 180.0f;
-		}
-		else if (window->KeyDown(VK_UP)) {
-			keysPressed = true;
-			firingAngle = 90.0f;
-		}
-		else if (window->KeyDown(VK_DOWN)) {
-			keysPressed = true;
-			firingAngle = 270.0f;
-		}
-		else
-		{
+			mouse = true;
+		} else {
 			keysPressed = false;
 		}
 
 		// dispara míssil
-		if (KeysTimed(keysPressed, 0.150f))
-		{
+		if (KeysTimed(keysPressed, 0.150f)) {
 			BasicAI::audio->Play(FIRE);
-			BasicAI::scene->Add(new Missile(firingAngle), STATIC);
+			BasicAI::scene->Add(new Missile(speed.Angle(x, y, window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top)), STATIC);
 		}
 	}
 
@@ -284,9 +252,52 @@ void Player::Update()
 
 // ---------------------------------------------------------------------------------
 
+void Player::OnCollision(Object* obj) {
+	switch (obj->Type()) {
+		// Bulba
+		case BLUE:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 10;
+			break;
+
+		// Pikachu
+		case GREEN:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 10;
+			break;
+		
+		// Taurus
+		case ORANGE:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 20;
+			break;
+		
+		// Nido
+		case MAGENTA:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 50;
+			break;
+		
+		case HITMONLEE:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 75;
+			break;
+
+		case MUK:
+			BasicAI::scene->Delete(obj, MOVING);
+			life -= 100;
+			break;
+	}
+}
+
+// ---------------------------------------------------------------------------------
+
 void Player::Draw()
 {
 	sprite->Draw(x, y, Layer::MIDDLE, 1.0f, -speed.angle + 90.0f);
+	if (mouse) {
+		aim->Draw(window->MouseX() + game->viewport.left, window->MouseY() + game->viewport.top);
+	}
 	if (speed.magnitude > 0) {
 		tail->Draw(Layer::MIDBACK, 1.0f);
 		ra->Draw(x, y, Layer::MIDDLE, 1.0f, -speed.angle + 90.0f);
@@ -294,5 +305,8 @@ void Player::Draw()
 	}
 }
 
-
 // -------------------------------------------------------------------------------
+
+bool Player::isDead() {
+	return dead;
+}

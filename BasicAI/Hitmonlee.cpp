@@ -9,6 +9,8 @@ Hitmonlee::Hitmonlee(float pX, float pY, Player* p)
 {
 	player = p;
 	sprite = new Sprite("Resources/Hitmonlee.png");
+	name = new Font("Resources/Tahoma14b.png");
+	name->Spacing("Resources/Tahoma14b.dat");
 	bbox = new Circle(20.0f);
 	speed.angle = 0.0f;
 	speed.magnitude = 0.0f;

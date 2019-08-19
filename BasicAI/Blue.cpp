@@ -22,6 +22,8 @@ Blue::Blue(float pX, float pY, Player* p)
 	player = p;
 	sprite = new Sprite("Resources/Bulba.png");
 	bbox   = new Circle(20.0f);
+	name = new Font("Resources/Tahoma14b.png");
+	name->Spacing("Resources/Tahoma14b.dat");
 	speed.angle = 0.0f;
 	speed.magnitude = 0.0f;
 	MoveTo(pX, pY);

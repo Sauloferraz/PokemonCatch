@@ -19,6 +19,7 @@
 #include "Sprite.h"
 #include "Vector.h"
 #include "Player.h"
+#include "Font.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ class Blue : public Object
 private:
 	Sprite * sprite;							// sprite do objeto
 	Player * player;							// ponteiro para jogador
+	Font* name;
 	Vector speed;								// velocidade e direção
 	float factor;								// fator de escala
 	
@@ -41,8 +43,10 @@ public:
 
 // ---------------------------------------------------------------------------------
 
-inline void Blue::Draw()
-{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); }
+inline void Blue::Draw() {
+	sprite->Draw(x, y, Layer::MIDBACK, scale, rotation);
+	name->Draw(x - game->viewport.left - 15, y - game->viewport.top - 35, "Bulbasaur", *new Color(0, 0, 0, 1));
+}
 
 // ---------------------------------------------------------------------------------
 

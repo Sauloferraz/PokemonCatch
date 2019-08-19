@@ -19,6 +19,7 @@
 #include "Sprite.h"
 #include "Vector.h"
 #include "Player.h"
+#include "Font.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ class Hitmonlee : public Object
 private:
 	Sprite* sprite;							// sprite do objeto
 	Player* player;							// ponteiro para jogador
+	Font* name;
 	Vector speed;								// velocidade e direção
 	int distance;								// mantém distância do jogador
 
@@ -44,6 +46,7 @@ public:
 inline void Hitmonlee::Draw()
 {
 	sprite->Draw(x, y, Layer::MIDBACK, scale, rotation);
+	name->Draw(x - game->viewport.left - 15, y - game->viewport.top - 35, "Hitmonlee", *new Color(0, 0, 0, 1));
 }
 
 // ---------------------------------------------------------------------------------

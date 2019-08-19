@@ -23,10 +23,10 @@
 #include "Animation.h"
 // ---------------------------------------------------------------------------------
 
-class Player : public Object
-{
+class Player : public Object {
 private:
 	Sprite* sprite;					// sprite do objeto
+	Sprite* aim;
 	TileSet* r = new TileSet("Resources/CharTile.png", 1, 5);
 	Animation* ra = new Animation(r, 2.0f / 22.0f, true);
 	Particles* tail;					// calda do jogador
@@ -40,7 +40,10 @@ private:
 	bool axisCtrl;						// habilita leitura de disparos
 	bool keysCtrl;						// habilita disparos pelas setas
 	bool keysPressed;					// qualquer seta pressionada
+	bool mouse;
+	bool dead;
 	float firingAngle;					// direção dos disparos
+	float life;
 
 public:
 	Vector speed;						// velocidade e direção de movimento
@@ -53,7 +56,10 @@ public:
 
 	void Move(Vector&& v);				// movimenta jogador
 	void Update();						// atualização
+	void OnCollision(Object* obj);
 	void Draw();						// desenho
+	
+	bool isDead();
 };
 // ---------------------------------------------------------------------------------
 

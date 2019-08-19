@@ -24,7 +24,7 @@
 // ------------------------------------------------------------------------------
 
 enum { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT, 
-	   THEME, START, FIRE, EXPLODE, HITWALL, EXPLOSION, MUK, ZUBAT, HITMONLEE };
+	   THEME, START, FIRE, EXPLODE, HITWALL, EXPLOSION, MUK, ZUBAT, HITMONLEE, GEAR };
 
 // ------------------------------------------------------------------------------
 
@@ -32,6 +32,7 @@ class BasicAI : public Game
 {
 private:
 	Background * backg = nullptr;	// pano de fundo
+	Sprite* sprite;
 	Hud * hud = nullptr;			// heads up display
 	bool viewBBox = false;			// bouding box visível
 

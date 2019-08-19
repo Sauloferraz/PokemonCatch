@@ -21,6 +21,9 @@ Orange::Orange(float pX, float pY, float ang)
 	sprite = new Sprite("Resources/char.png");
 	bbox   = new Circle(20.0f);
 
+	name = new Font("Resources/Tahoma14b.png");
+	name->Spacing("Resources/Tahoma14b.dat");
+
 	// ajusta o vetor velocidade
 	speed.angle = ang;
 	speed.magnitude = 400;
@@ -109,6 +112,7 @@ void Orange::Draw()
 {
 	sprite->Draw(x, y, Layer::MIDBACK, scale, rotation);
 	tail->Draw(Layer::MIDBACK, 1.0f);
+	name->Draw(x - game->viewport.left, y - game->viewport.top - 35, "Taurus", *new Color(0, 0, 0, 1));
 }
 
 // -------------------------------------------------------------------------------

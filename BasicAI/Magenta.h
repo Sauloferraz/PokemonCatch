@@ -19,6 +19,7 @@
 #include "Sprite.h"
 #include "Vector.h"
 #include "Player.h"
+#include "Font.h"
 
 // ---------------------------------------------------------------------------------
 
@@ -27,6 +28,7 @@ class Magenta : public Object
 private:
 	Sprite * sprite;							// sprite do objeto
 	Player * player;							// ponteiro para jogador
+	Font* name;
 	Vector speed;								// velocidade e direção
 	
 public:
@@ -41,7 +43,9 @@ public:
 // ---------------------------------------------------------------------------------
 
 inline void Magenta::Draw()
-{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); }
+{ sprite->Draw(x, y, Layer::MIDBACK, scale, rotation); 
+name->Draw(x - game->viewport.left, y - game->viewport.top - 35, "Nidoking", *new Color(0, 0, 0, 1));
+}
 
 // ---------------------------------------------------------------------------------
 

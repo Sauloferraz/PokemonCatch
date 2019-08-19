@@ -163,6 +163,7 @@
     <ClCompile Include="BasicAI.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Green.cpp" />
+    <ClCompile Include="Hitmonlee.cpp" />
     <ClCompile Include="Hud.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Magenta.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector.cpp" />
+    <ClCompile Include="WaveHit.cpp" />
     <ClCompile Include="WaveMuk.cpp" />
     <ClCompile Include="WallHit.cpp" />
     <ClCompile Include="WaveB.cpp" />
@@ -191,14 +193,17 @@
     <ClCompile Include="WaveO.cpp" />
     <ClCompile Include="WaveSnorlax.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Zubat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Blue.h" />
+    <ClInclude Include="Hitmonlee.h" />
     <ClInclude Include="Life.h" />
     <ClInclude Include="Caterpie.h" />
+    <ClInclude Include="WaveHit.h" />
     <ClInclude Include="WaveSnorlax.h" />
     <ClInclude Include="Muk.h" />
     <ClInclude Include="Controller.h" />
@@ -238,6 +243,7 @@
     <ClInclude Include="WaveMuk.h" />
     <ClInclude Include="WaveO.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="Zubat.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Pixel.hlsl">

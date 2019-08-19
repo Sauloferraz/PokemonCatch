@@ -24,7 +24,7 @@
 // ------------------------------------------------------------------------------
 
 enum { PLAYER, MISSILE, BLUE, GREEN, MAGENTA, ORANGE, WALLHIT, 
-	   THEME, START, FIRE, EXPLODE, HITWALL, EXPLOSION, MUK };
+	   THEME, START, FIRE, EXPLODE, HITWALL, EXPLOSION, MUK, ZUBAT, HITMONLEE };
 
 // ------------------------------------------------------------------------------
 

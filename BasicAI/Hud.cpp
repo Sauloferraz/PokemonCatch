@@ -26,6 +26,8 @@ uint Hud::captures = 0;
 uint Hud::muk = 0;
 uint Hud::snorlax = 0;
 uint Hud::caterpies = 0;
+uint Hud::hitmonlee = 0;
+uint Hud::zubats = 0;
 // ------------------------------------------------------------------------------
 
 Hud::Hud()

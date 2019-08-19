@@ -47,6 +47,8 @@ public:
 	static uint muk;
 	static uint snorlax;
 	static uint caterpies;
+	static uint zubats;
+	static uint hitmonlee;
 
 	Hud();										// construtor
 	~Hud();										// destrutor

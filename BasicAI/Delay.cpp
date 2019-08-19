@@ -15,6 +15,9 @@
 #include "WaveM.h"
 #include "WaveB.h"
 #include "WaveG.h"
+#include "WaveMuk.h"
+#include "WaveSnorlax.h"
+#include "WaveHit.h"
 #include "Hud.h"
 
 // ------------------------------------------------------------------------------
@@ -29,6 +32,10 @@ Delay::Delay()
 	fase2 = false;
 	fase3 = false;
 	fase4 = false;
+	fase5 = false;
+	fase6 = false;
+	fase7 = false;
+	fase8 = false;
 }
 
 // ------------------------------------------------------------------------------
@@ -73,9 +80,28 @@ void Delay::Update()
 	if (!fase4 && timer.Elapsed(15.0f))
 	{
 		BasicAI::scene->Add(new WaveG(), STATIC);
-		BasicAI::scene->Delete();
 		fase4 = true;
 	}
+
+	if (!fase5 && timer.Elapsed(25.0f))
+	{
+		BasicAI::scene->Add(new WaveSnorlax(), STATIC);
+		fase5 = true;
+	}
+
+	if (!fase6 && timer.Elapsed(25.0f))
+	{
+		BasicAI::scene->Add(new WaveMuk(), STATIC);
+		fase6 = true;
+	}
+
+	if (!fase7 && timer.Elapsed(45.0f))
+	{
+		BasicAI::scene->Add(new WaveHit(), STATIC);
+		BasicAI::scene->Delete();
+		fase7 = true;
+	}
+		
 }
 
 // -------------------------------------------------------------------------------

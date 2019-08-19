@@ -92,6 +92,15 @@
     <Filter Include="Game\Pokes\Tauros">
       <UniqueIdentifier>{02a45cb8-82ce-4bc5-8ada-ea64ecc457db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Pokes\Zubat">
+      <UniqueIdentifier>{013a022b-5c41-4ae7-bb8c-c01f97720ec1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Pokes\Hitmonlee">
+      <UniqueIdentifier>{0581cfb0-e33a-427f-a95e-dc3901decaf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Pokes\Waves\WaveHitmonlee">
+      <UniqueIdentifier>{65ae074d-db12-41ec-9b35-ffc2c1d64bee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp">
@@ -222,6 +231,15 @@
     </ClCompile>
     <ClCompile Include="Life.cpp">
       <Filter>Game\Hud\LifeBar</Filter>
+    </ClCompile>
+    <ClCompile Include="Zubat.cpp">
+      <Filter>Game\Pokes\Zubat</Filter>
+    </ClCompile>
+    <ClCompile Include="Hitmonlee.cpp">
+      <Filter>Game\Pokes\Hitmonlee</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveHit.cpp">
+      <Filter>Game\Pokes\Waves\WaveHitmonlee</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,6 +377,15 @@
     </ClInclude>
     <ClInclude Include="Life.h">
       <Filter>Game\Hud\LifeBar</Filter>
+    </ClInclude>
+    <ClInclude Include="Zubat.h">
+      <Filter>Game\Pokes\Zubat</Filter>
+    </ClInclude>
+    <ClInclude Include="Hitmonlee.h">
+      <Filter>Game\Pokes\Hitmonlee</Filter>
+    </ClInclude>
+    <ClInclude Include="WaveHit.h">
+      <Filter>Game\Pokes\Waves\WaveHitmonlee</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -25,7 +25,7 @@ Explosion::Explosion(float pX, float pY)
 	Emitter explosion;
 	explosion.imgFile   = "Resources/Explo.png";	// arquivo de imagem
 	explosion.angle     = 0.0f;						// direção da explosão
-	explosion.spread    = -180.0f;					// espalhamento em graus
+	explosion.spread    = 180.0f;					// espalhamento em graus
 	explosion.lifeTime  = 0.5f;						// tempo de vida em segundos
 	explosion.genTime   = 0.000f;					// tempo entre geração de novas partículas
 	explosion.percToDim = 0.8f;						// desaparece após 60% da vida

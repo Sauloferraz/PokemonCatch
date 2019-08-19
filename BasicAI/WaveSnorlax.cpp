@@ -5,7 +5,7 @@
 
 // ------------------------------------------------------------------------------
 
-WaveSnorlax::WaveSnorlax() : secs(8.0f, 10.0f)
+WaveSnorlax::WaveSnorlax() : secs(22.0f, 25.0f)
 {
 	// atraso para a próxima onda 
 	delay = secs.Rand();

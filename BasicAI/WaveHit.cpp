@@ -1,5 +1,5 @@
 /**********************************************************************************
-// WaveM (Código Fonte)
+// WaveHit (Código Fonte)
 //
 // Criação:		06 Ago 2019
 // Atualização:	10 Ago 2019
@@ -9,14 +9,14 @@
 //
 **********************************************************************************/
 
-#include "WaveMuk.h"
+#include "WaveHit.h"
 #include "BasicAI.h"
-#include "Muk.h"
+#include "Hitmonlee.h"
 #include "Hud.h"
 
 // ------------------------------------------------------------------------------
 
-WaveMuk::WaveMuk() : posX(30, window->Width() - 30), posY(30, game->Height() - 30), secs(10.0f, 25.0f)
+WaveHit::WaveHit() : posX(50, window->Width() - 50), posY(50, game->Height() - 50), secs(8.0f, 10.0f)
 {
 	// posição dos inimigos
 	pX = posX.Rand();
@@ -28,23 +28,23 @@ WaveMuk::WaveMuk() : posX(30, window->Width() - 30), posY(30, game->Height() - 3
 
 // ------------------------------------------------------------------------------
 
-WaveMuk::~WaveMuk()
+WaveHit::~WaveHit()
 {
 
 }
 
 // -------------------------------------------------------------------------------
 
-void WaveMuk::Update()
+void WaveHit::Update()
 {
 	// se passou o tempo de atraso
-	if (timer.Elapsed(delay) && Hud::muk < 1)
+	if (timer.Elapsed(delay) && Hud::magentas < 1)
 	{
 		// toca som de nova onda
 		BasicAI::audio->Play(MAGENTA);
 
 		// adiciona novo inimigo
-		BasicAI::scene->Add(new Muk(pX, pY, BasicAI::player), MOVING);
+		BasicAI::scene->Add(new Hitmonlee(pX, pY, BasicAI::player), MOVING);
 
 		// nova posição do inimigo
 		pX = posX.Rand();
@@ -57,7 +57,7 @@ void WaveMuk::Update()
 
 // -------------------------------------------------------------------------------
 
-void WaveMuk::Draw()
+void WaveHit::Draw()
 {
 
 }
